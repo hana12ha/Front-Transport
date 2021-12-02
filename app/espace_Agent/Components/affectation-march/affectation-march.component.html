@@ -1,0 +1,103 @@
+<div class="wrapper">
+
+    <app-asidenav></app-asidenav>
+    <div class="content-wrapper">
+        <br>
+        <br>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1></h1>
+                    </div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">AFFECTER MARCHANDISE</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form #addForm="ngForm" (ngSubmit)="OnAffectMarch(addForm)">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
+                                        <label>Voyage</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="idVoyage" ngModel>
+                                                <option></option>
+                                                <option *ngFor="let voyage of voyages">
+                                                    {{voyage}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <br>
+
+                                    <div class="card card-secondary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Marchandise</h3>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Poids</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="far fa-calendar-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="poids" id="poids"
+                                                            ngModel required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Volume</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="far fa-calendar-alt"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="volume"
+                                                            id="volume" ngModel required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <app-footer></app-footer>
+</div>

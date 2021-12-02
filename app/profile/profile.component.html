@@ -1,0 +1,151 @@
+<div class="wrapper">
+  <app-asidenav></app-asidenav>
+  <div class="content-wrapper">
+
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1></h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <!-- Profile Image -->
+            <div class="card card-primary ">
+
+              <div class="card-header">
+                <h3 class="card-title">Bienvenue {{currentUser.nom}} sur votre profile</h3>
+              </div>
+              <!-- Profile Image -->
+              <form>
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="/assets/adminlte/dist/img/user8-128x128.jpg" alt="User profile picture"
+                fxFlex="128px" *ngIf="showChauffeurBoard">
+                <img class="profile-user-img img-fluid img-circle" src="/assets/adminlte/dist/img/user2-160x160.jpg" alt="User profile picture"
+                fxFlex="128px" *ngIf="showZouitaBoard">
+                    <br>
+                    <br>
+                    <br>
+                    <a class="btn btn-danger btn-sm" href="#">
+                      <i class="fas fa-trash">
+                      </i>
+                     
+                    </a>
+                    &nbsp;&nbsp;
+                    <a class="btn btn-info btn-sm" href="#">
+                      <i class="fas fa-plus">
+                      </i>
+                   
+                    </a>
+                  </div>
+
+                  <h3 class="profile-username text-center"></h3>
+
+                  <p class="text-muted text-center">
+                  </p>
+                  <div class="card card-info">
+
+                    <div class="card-body">
+
+                      <table width=100%>
+                        <tr>
+                          <td>
+                            <b>ID</b>
+                          </td>
+                          <td>
+                            <div class="input-group mb-3">
+
+                              <div class="input-group-prepend">
+
+                                <span class="input-group-text">A</span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="id" value="{{currentUser.id}}"
+                                disabled>
+
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <b>NOM</b>
+                          </td>
+                          <td>
+                            <div class="input-group mb-3">
+
+                              <div class="input-group-prepend">
+
+                                <span class="input-group-text">A</span>
+                              </div>
+                              <input type="text" class="form-control" id="nom" name="nom" placeholder="nom"
+                                [(ngModel)]="currentUser.nom" value="{{currentUser.nom}}">
+
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <b>PRENOM</b>
+                          </td>
+                          <td>
+                            <div class="input-group mb-3">
+
+                              <div class="input-group-prepend">
+
+                                <span class="input-group-text">A</span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="prenom"
+                                value="{{currentUser.prenom}}">
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <b>EMAIL</b>
+                          </td>
+                          <td>
+                            <div class="input-group mb-3">
+
+                              <div class="input-group-prepend">
+
+                                <span class="input-group-text">@</span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="email" disabled="true"
+                                value="{{currentUser.email}}">
+                            </div>
+                          </td>
+                        </tr>
+
+                        
+
+
+                      </table>
+
+
+                      <a class="btn btn-primary btn-block" (click)="onSubmit()"><b>enregistrer</b></a>
+                      <div class="alert alert-success" *ngIf="isUpdate">
+                        This {{currentUser.roles}} was updated successfully
+                      </div>
+                    </div>
+
+                    <!-- /.card-body -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <app-footer></app-footer>
+</div>

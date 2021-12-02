@@ -1,0 +1,84 @@
+<div class="wrapper">
+<app-asidenav></app-asidenav>
+<div class="content-wrapper">
+  <form class="form-inline ">
+    <div class="input-group input-group-sm">
+      <input class="form-control form-control-navbar" type="search"   class="searchTerm" name="term" placeholder="Search" aria-label="Search" [(ngModel)]="term">
+      <div class="input-group-append">
+        <button class="btn btn-navbar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <br>
+
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1></h1>
+        </div>
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Voyages Programmés</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead style="width: 500px">
+                  <tr>
+                    <th style="width: 10px">ID VOYAGE </th>
+                    <th style="width: 10px">ID MARCHANDISE </th>
+                    <th>LIEU DEPART</th>
+                    <th>LIEU ARRIVE</th>
+                    <th>DATE DEPART</th>
+                    <th>DATE ARRIVE</th>
+                    <th style="width: 40px">STATUT</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let voyage of voyages |filter:term">
+                    <td>{{voyage.id}}</td>
+                    <td>{{voyage.marchandise?.id}}</td>
+                    <td>{{voyage.lieuDepart.ville}}</td>
+                    <td>{{voyage.lieuDestination.ville }}</td>
+                    <td>{{voyage.dateDepart}}</td>
+                    <td>{{voyage.dateArrive}}</td> 
+                    <td><span class="badge bg-warning">{{voyage.statutVoyage}}</span></td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>
+</div>

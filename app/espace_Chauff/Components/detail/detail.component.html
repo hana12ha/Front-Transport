@@ -1,0 +1,90 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1></h1>
+      </div>
+
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Détails</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead style="width: 500px">
+                <tr>
+                  <th style="width: 10px">ID DOCUMENT </th>
+                  <th style="width: 40px">NOM DOCUMENT</th>
+                  <th>DESCRIPTION</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>DOC 1</td>
+                  <td>Description doc1</td>
+                  <td>
+                    <a (click)="openDialog2()" class="btn btn-info btn-sm">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                    </a>
+                    &nbsp;&nbsp;
+                    <a class="btn btn-danger btn-sm" href="#">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>DOC 1</td>
+                  <td>Description doc1</td>
+                  <td>
+                    <a class="btn btn-info btn-sm" href="#">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                    </a>
+                    &nbsp;&nbsp;
+                    <a class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

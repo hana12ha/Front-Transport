@@ -1,0 +1,78 @@
+<div class="wrapper">
+
+  <app-asidenav></app-asidenav>
+  <div class="content-wrapper">
+    <form class="form-inline ">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search"   class="searchTerm" name="term" placeholder="Search" aria-label="Search" [(ngModel)]="term">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <br>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">ESPACE {{currentUser.roles}}</h1>
+          </div><!-- /.col -->
+  
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150<sup style="font-size: 20px">%</sup></h3>
+  
+                <p>Voyages Programmés</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-truck"></i>
+              </div>
+              <a routerLink="/espace_Chauff/voyagesProgramme" class="small-box-footer" >More info <i
+                  class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44<sup style="font-size: 20px">%</sup></h3>
+  
+                <p>Voyages En Cours</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-truck"></i>
+              </div>
+              <a routerLink="/espace_Chauff/voyagesEnCour" class="small-box-footer">More info <i
+                  class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          
+          <!-- ./col -->
+        </div>
+  
+      </div>
+  
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>

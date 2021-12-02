@@ -1,0 +1,221 @@
+<div class="wrapper">
+  <app-asidenav></app-asidenav>
+  <div class="content-wrapper">
+    <form class="form-inline ">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" class="searchTerm" name="term"
+          placeholder="Search" aria-label="Search" [(ngModel)]="term">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <br>
+
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1></h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Voyages Programmés</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead style="width: 500px">
+                    <tr>
+                      <th style="width: 10px">ID VOYAGE </th>
+                      <th style="width: 10px">ID MARCHANDISE </th>
+                      <th>LIEU DEPART</th>
+                      <th>LIEU ARRIVE</th>
+                      <th>DATE DEPART</th>
+                      <th>DATE ARRIVE</th>
+                      <th>CLIENT</th>
+                      <th style="width: 40px">STATUT</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let voyage of voyages |filter:term">
+                      <td>{{voyage.id}}</td>
+                      <td>{{voyage.marchandise?.id}}</td>
+                      <td>{{voyage.lieuDepart.ville}}</td>
+                      <td>{{voyage.lieuDestination.ville }}</td>
+                      <td>{{voyage.dateDepart}}</td>
+                      <td>{{voyage.dateArrive}}</td>
+                      <td class="text-center">
+                        <a class="btn btn-primary btn-sm" (click)="get(voyage.id)" data-toggle="modal"
+                          data-target="#modalDetailDoc">
+                          <i class="fas fa-folder">
+                          </i>
+                          Détails
+                        </a>
+
+                      </td>
+                      <td><span class="badge bg-warning">{{voyage.statutVoyage}}</span></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="modal fade bd-example-modal-lg" id="modalDetailDoc" tabindex="-1" role="dialog"
+                  aria-labelledby="modalClientTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalAjoutTitle">AJOUTER DOCUMENT</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #addForm="ngForm" (ngSubmit)="onAffecterClient(addForm)">
+                          <div class="card-body">
+                            <div class="form-group">
+                              <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
+                              <label>Client</label>
+                              <div class="input-group">
+                                <input type="hidden" name="idVoyage" ngModel={{voyage?.id}}>
+
+                                <select class="form-control select2" name="raisonSocial" ngModel>
+                                  <option></option>
+                                  <option *ngFor="let client of clients">
+                                    {{client.raisonSocial}}
+                                  </option>
+                                </select>
+                                <span class="input-group-btn">
+                                  <!-- Button trigger modal -->
+                                  <div class="input-group">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
+                                        data-target="#modalClient" id="button-addonClient">
+
+                                        <span class="input-group-btn fa fa-plus"></span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- /.card-body -->
+                          <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Modal Clientt-->
+                <div class="modal fade bd-example-modal-lg" id="modalClient" tabindex="-1" role="dialog"
+                  aria-labelledby="modalClientTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalClientTitle">Modal Client</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="clientForm" (ngSubmit)="ADDClients()">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <div *ngIf="msg" class="alert alert-success" role="alert">{{ msg }}</div>
+                                <label>Raison social</label>
+                                <input type="text" name="raisonSocial" class="form-control"
+                                  aria-describedby="raisonSocialeHelp" formControlName="raisonSocial" required>
+
+                              </div>
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" aria-describedby="emailHelp"
+                                  formControlName="email" required>
+                              </div>
+                              <div class="form-group">
+                                <label>téléphone</label>
+                                <input type="tel" name="telephone" class="form-control" formControlName="telephone"
+                                  required>
+                              </div>
+
+                            </div>
+
+                            <div class="col-md-6" formGroupName="adresse">
+                              <div class="form-group">
+                                <label>ligne1</label>
+                                <input type="text" name="ligne1" class="form-control" formControlName="ligne1" required>
+                              </div>
+                              <div class="form-group">
+                                <label>ligne2</label>
+                                <input type="text" name="ligne2" class="form-control" formControlName="ligne2" required>
+                              </div>
+                              <div class="form-group">
+                                <label>Code postale</label>
+                                <input type="text" name="codePostal" class="form-control" formControlName="codePostal"
+                                  required>
+                              </div>
+                              <div class="form-group">
+                                <label>Ville</label>
+                                <input type="text" name="ville" class="form-control" formControlName="ville" required>
+                              </div>
+                              <div class="form-group">
+                                <label>Pays</label>
+                                <input type="text" name="pays" class="form-control" formControlName="pays" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                              id="closeModalClient">Close</button>
+                            <button type="submit" class="btn btn-primary">Save
+                              changes</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>

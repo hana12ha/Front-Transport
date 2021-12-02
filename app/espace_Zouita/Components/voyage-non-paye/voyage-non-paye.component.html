@@ -1,0 +1,272 @@
+<div class="wrapper">
+
+  <app-asidenav></app-asidenav>
+
+  <div class="content-wrapper ">
+
+    <form class="form-inline ">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" class="searchTerm" name="term"
+          placeholder="Search" aria-label="Search" [(ngModel)]="term">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <br>
+
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1></h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Voyages Non Payés</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead style="width: 500px">
+                    <tr>
+                      <th style="width: 10px">ID VOYAGE </th>
+                      <th>ID MARCHANDISE</th>
+                      <th>LIEU DEPART</th>
+                      <th>LIEU ARRIVE</th>
+                      <th>DATE DEPART</th>
+                      <th>DATE ARRIVE</th>
+                      <th>facture</th>
+                      <th style="width: 40px">STATUT</th>
+                      <th>DETAIL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let voyage of voyages | filter:term">
+                      <td>{{voyage.id}}</td>
+                      <td>{{voyage.marchandise?.id}}</td>
+                      <td>{{voyage.lieuDepart.ville}}</td>
+                      <td>{{voyage.lieuDestination.ville }}</td>
+                      <td>{{voyage.dateDepart}}</td>
+                      <td>{{voyage.dateArrive}}</td>
+                      <td>{{voyage.facture!.id}}</td>
+                      <td><span class="badge bg-danger">{{voyage.statutVoyage}}</span></td>
+                      <td class="text-center">
+                        <a class="btn btn-primary btn-sm" (click)="onGetFacture(voyage.id)" data-toggle="modal"
+                          data-target="#modalDetailDoc">
+                          <i class="fas fa-folder">
+                          </i>
+                          Détails
+                        </a>
+
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!--detaillllllllllllllllll-->
+
+              <div class="modal fade bd-example-modal-lg" id="modalDetailDoc" tabindex="-1" role="dialog"
+                aria-labelledby="modalClientTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalDetailTitle">DETAILS DE FACTURE</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <section class="content">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <!-- general form elements -->
+                              <div class="card card-primary">
+
+
+
+                                <header>
+                                  <h1>Facture</h1>
+                                  <address contenteditable>
+                                    <p>Transport Eco Zouita</p><br>
+                                    <p>hay Al Houda, 3°ét.,<br> appt. 318 AGADIR MAROC</p><br>
+                                    <p> 06 61 38 57 08</p>
+                                  </address>
+                                  <span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input
+                                      type="file" accept="image/*"></span>
+                                </header>
+                                <article>
+                                  <h1>Facturé à</h1>
+                                  <address contenteditable>
+                                    <p>
+                                      {{clients?.raisonSocial}}<br>{{clients?.adresse?.ville}}<br>{{clients?.adresse?.codePostal}}<br>{{clients?.telephone}}
+                                    </p>
+                                  </address>
+                                  <table class="meta">
+                                    <tr>
+                                      <th><span contenteditable>Facture #</span></th>
+                                      <td><span contenteditable>{{factures?.id}}</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th><span contenteditable>Numéro </span></th>
+                                      <td><span contenteditable>{{factures?.numero}}</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th><span contenteditable>Date Facture</span></th>
+                                      <td><span contenteditable>{{factures?.date}}</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th><span contenteditable>Total</span></th>
+                                      <td><span>{{factures?.totalTTC}} DH</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <table class="inventory">
+                                    <thead>
+                                      <tr>
+                                        <th><span contenteditable>Item</span></th>
+
+                                        <th><span contenteditable>Description</span></th>
+                                        <th><span contenteditable>Date</span></th>
+                                        <th><span contenteditable>Montant</span></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><a class="cut">-</a><span contenteditable>Consultation</span></td>
+                                        <td><span contenteditable>descrippp</span></td>
+                                        <td><span contenteditable>2021-07-10</span></td>
+                                        <td><span data-prefix></span><span>{{factures?.totalHT}} DH</span></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+
+                                  <table class="balance">
+                                    <tr>
+                                      <th><span contenteditable>TotalHT</span></th>
+                                      <td><span data-prefix></span><span>{{factures?.totalHT}} DH</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th><span contenteditable>TVA</span></th>
+                                      <td><span data-prefix></span><span contenteditable>{{factures?.tva}} DH</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th><span contenteditable>Total</span></th>
+                                      <td><span
+                                          data-prefix></span><span>{{factures?.totalTTC}} DH</span></td>
+                                    </tr>
+                                  </table>
+                                </article>
+
+
+
+                                <!-- /.card-header -->
+                                <!--div class="card-body">
+                                    <table width=100%>
+                                      <tr>
+                                        <td style="text-size-adjust: 900px; ">Facture :</td>
+                                        
+                                      </tr>
+                                      <br>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>Id Facture</b></td>
+                                          <td>{{factures?.id}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>Date Facture</b></td>
+                                          <td>{{factures?.date}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>Numéro</b></td>
+                                          <td>{{factures?.numero}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>TotalHt</b></td>
+                                          <td>{{factures?.totalHT}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>TVA</b></td>
+                                          <td>{{factures?.tva}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+                                        <tr>
+
+                                          <td><b>Regle</b></td>
+                                          <td>{{factures?.regle}}</td>
+                                          
+                                        </tr>
+                                        <br>
+                                        <br>
+
+
+                                      
+                                    </table>
+                                  </div-->
+                                <!-- /.card-body -->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>

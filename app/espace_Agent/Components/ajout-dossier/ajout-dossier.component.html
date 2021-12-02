@@ -1,0 +1,245 @@
+<div class="wrapper">
+
+    <app-asidenav></app-asidenav>
+    <div class="content-wrapper">
+        <br>
+        <br>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1></h1>
+                    </div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Ajouter Voyage</h3>
+                            </div>
+                            <form class="form-horizontal" [formGroup]="voyageForm" (ngSubmit)="onAddVoyage()">
+                                <div class="card-body">
+                                    <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Date Départ</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="far fa-calendar-alt"></i></span>
+                                                    </div>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateDepart">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Date Arrive</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="far fa-calendar-alt"></i></span>
+                                                    </div>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateArrive">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="card card-secondary" formGroupName="lieuDepart">
+                                        <div class="card-header">
+                                            <h3 class="card-title">ADRESSE DEPART</h3>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>ligne 1</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="ligne1"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>ligne 2</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="ligne2"
+                                                            required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>code postal</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="codePostal" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>ville</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="ville"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>pays</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="pays"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="card card-secondary" formGroupName="lieuDestination">
+                                        <div class="card-header">
+                                            <h3 class="card-title">ADRESSE ARRIVE</h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="card card-secondary">
+                                                        <label>ligne 1</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i
+                                                                        class="fas fa-pen"></i></span>
+                                                            </div>
+                                                            <input type="text" class="form-control"
+                                                                formControlName="ligne1" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>ligne 2</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="ligne2"
+                                                            required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>code postal</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="codePostal" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>ville</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="ville"
+                                                            required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>pays</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" formControlName="pays"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <app-footer></app-footer>
+</div>
